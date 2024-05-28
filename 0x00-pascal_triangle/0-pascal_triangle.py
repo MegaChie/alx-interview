@@ -17,14 +17,5 @@ def pascal_triangle(n):
         - elem: Short for element, iteration variable holding
                 the number of propabilities for the current raw.
     """
-    res = []
-    if n <= 0:
-        return []
-    else:
-        for num in range(n):
-            row = []
-            for elem in range(num + 1):
-                posit = math.comb(num, elem)
-                row.append(posit)
-            res.append(row)
-        return res
+    return [[math.comb(num, elem) for elem in range(num + 1)]
+            for num in range(n)] if n > 0 else []
