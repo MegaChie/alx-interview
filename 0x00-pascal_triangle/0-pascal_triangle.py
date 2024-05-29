@@ -17,20 +17,14 @@ def pascal_triangle(n):
         - elem: Short for element, iteration variable holding
                 the number of propabilities for the current raw.
     """
-    if n <= 0:
+    res = []
+    if n == 0:
         return []
-    elif n == 1:
-        return [[1]]
-    elif n == 2:
-        return [[1], [1, 1]]
-    else:
-        base = [[1], [1, 1]]
-        for row in range(2, n):
-            temp = [1, 1]
-            for elem in range(len(base[-1]) - 1):
-                a = base[-1][elem]
-                b = base[-1][elem + 1]
-                temp.insert(-1, a + b)
-            base.append(temp)
-        return base
-
+    for num in range(n):
+        res.append([])
+        res[num].append(1)
+        if num > 0:
+            for elem in range(1, num):
+                res[num].append(res[num - 1][elem - 1] + res[num - 1][elem])
+            res[num].append(1)
+    return res
