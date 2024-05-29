@@ -13,18 +13,16 @@ def pascal_triangle(n):
         - n: The numbers of rows from Pascal's Triangle.
         - num: Short for number, iteration variable used to hold
                the current row we are calculating.
-        - row: Represents the row final value from the triangle.
         - elem: Short for element, iteration variable holding
-                the number of propabilities for the current raw.
+                the calculation for the current raw's elements.
     """
     res = []
-    if n == 0:
-        return []
-    for num in range(n):
-        res.append([])
-        res[num].append(1)
-        if num > 0:
-            for elem in range(1, num):
-                res[num].append(res[num - 1][elem - 1] + res[num - 1][elem])
-            res[num].append(1)
+    if n > 0:
+        for i in range(1, n + 1):
+            level = []
+            C = 1
+            for j in range(1, i + 1):
+                level.append(C)
+                C = C * (i - j) // j
+            res.append(level)
     return res
