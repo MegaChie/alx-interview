@@ -1,6 +1,6 @@
+
 #!/usr/bin/python3
 """Define A function to generate Pascal's Triangle"""
-import math
 
 
 def pascal_triangle(n):
@@ -13,16 +13,24 @@ def pascal_triangle(n):
         - n: The numbers of rows from Pascal's Triangle.
         - num: Short for number, iteration variable used to hold
                the current row we are calculating.
+        - row: Represents the row final value from the triangle.
         - elem: Short for element, iteration variable holding
-                the calculation for the current raw's elements.
+                the number of propabilities for the current raw.
     """
-    res = []
-    if n > 0:
-        for i in range(1, n + 1):
-            level = []
-            C = 1
-            for j in range(1, i + 1):
-                level.append(C)
-                C = C * (i - j) // j
-            res.append(level)
-    return res
+    if n <= 0:
+        return []
+    elif n == 1:
+        return [[1]]
+    elif n == 2:
+        return [[1], [1, 1]]
+    else:
+        base = [[1], [1, 1]]
+        for row in range(2, n):
+            temp = [1, 1]
+            for elem in range(len(base[-1]) - 1):
+                a = base[-1][elem]
+                b = base[-1][elem + 1]
+                temp.insert(-1, a + b)
+            base.append(temp)
+        return base
+
