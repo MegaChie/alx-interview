@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 """Define A function to generate Pascal's Triangle"""
 
@@ -33,4 +32,3 @@ def pascal_triangle(n):
                 temp.insert(-1, a + b)
             base.append(temp)
         return base
-
