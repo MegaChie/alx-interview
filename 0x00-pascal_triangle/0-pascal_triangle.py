@@ -7,14 +7,16 @@ def pascal_triangle(n):
     Returns a list of lists of integers representing the Pascal’s triangle of n
 
     Variables naming:
-        - res: Short for result, and will hold
-               the elements of the Pascal's Triangle.
+        - base: Holds the first and second row's elements
+                of the Pascal's Triangle.
         - n: The numbers of rows from Pascal's Triangle.
         - num: Short for number, iteration variable used to hold
                the current row we are calculating.
         - row: Represents the row final value from the triangle.
         - elem: Short for element, iteration variable holding
                 the number of propabilities for the current raw.
+        - temp: temporary list of lists to
+                start calculating the rest of the inner lists.
     """
     if n <= 0:
         return []
