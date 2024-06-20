@@ -11,19 +11,22 @@ size = 0
 limit = 0
 try:
     for line in sys.stdin:
-        intel = line.split(" ")
-        if len(intel[-2]) == 3:
-            size += int(intel[-1])
-            codes[int(intel[-2])] = codes.get(int(intel[-2]), 0) + 1
-            limit += 1
+        try:
+            intel = line.split(" ")
+            if len(intel[-2]) == 3:
+                size += int(intel[-1])
+                codes[int(intel[-2])] = codes.get(int(intel[-2]), 0) + 1
+                limit += 1
+        except (IndexError, ValueError):
+            pass
         if limit == 10:
             limit = 0
             print("File size: {}".format(size))
             for key, value in sorted(codes.items()):
                 print("{}: {}".format(key, value))
-except Exception:
-    pass
 except KeyboardInterrupt:
+    pass
+finally:
     print("File size: {}".format(size))
     for key, value in sorted(codes.items()):
         print("{}: {}".format(key, value))
