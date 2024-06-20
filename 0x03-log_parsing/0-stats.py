@@ -12,8 +12,8 @@ limit = 0
 try:
     for line in sys.stdin:
         intel = line.split(" ")
-        size += int(intel[-1])
         if len(intel[-2]) == 3:
+            size += int(intel[-1])
             codes[int(intel[-2])] = codes.get(int(intel[-2]), 0) + 1
             limit += 1
         if limit == 10:
@@ -23,7 +23,7 @@ try:
                 print("{}: {}".format(key, value))
 except Exception:
     pass
-finally:
+except KeyboardInterrupt:
     print("File size: {}".format(size))
     for key, value in sorted(codes.items()):
         print("{}: {}".format(key, value))
