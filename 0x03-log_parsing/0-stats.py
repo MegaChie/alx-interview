@@ -19,11 +19,11 @@ try:
         if limit == 10:
             limit = 0
             print('File size: {}'.format(size))
-            for key, value in sort(codes.items()):
+            for key, value in sorted(codes.items()):
                 print("{}: {}".format(key, value))
 except Exception as wrong:
     pass
 finally:
     print('File size: {}'.format(size))
-    for key, value in sort(codes.items()):
+    for key, value in sorted(codes.items()):
         print("{}: {}".format(key, value))
