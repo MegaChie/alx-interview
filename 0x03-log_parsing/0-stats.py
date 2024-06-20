@@ -14,7 +14,7 @@ try:
         intel = line.split(" ")
         if len(intel[-2]) == 3:
             size += int(intel[-1])
-            codes[int(intel[-2])] = codes.get(int(intel[-2]), 1) + 1
+            codes[int(intel[-2])] = codes.get(int(intel[-2]), 0) + 1
             limit += 1
         if limit == 10:
             limit = 0
