@@ -18,12 +18,12 @@ try:
             limit += 1
         if limit == 10:
             limit = 0
-            print('File size: {}'.format(size))
+            print("File size: {}".format(size))
             for key, value in sorted(codes.items()):
                 print("{}: {}".format(key, value))
-except Exception as wrong:
+except Exception:
     pass
 finally:
-    print('File size: {}'.format(size))
+    print("File size: {}".format(size))
     for key, value in sorted(codes.items()):
         print("{}: {}".format(key, value))
