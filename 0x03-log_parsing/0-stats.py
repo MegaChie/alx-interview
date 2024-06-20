@@ -12,18 +12,18 @@ limit = 0
 try:
     for line in sys.stdin:
         intel = line.split(" ")
-        if len(intel[-2]) == 3:
+        if len(intel) > 4:
             size += int(intel[-1])
             codes[intel[-2]] = codes.get(intel[-2], 0) + 1
             limit += 1
         if limit == 10:
             limit = 0
-            print('File size: {}'.format(size))
+            print("File size: {}".format(size))
             for key, value in sorted(codes.items()):
                 print("{}: {}".format(key, value))
 except Exception as wrong:
     pass
 finally:
-    print('File size: {}'.format(size))
+    print("File size: {}".format(size))
     for key, value in sorted(codes.items()):
         print("{}: {}".format(key, value))
