@@ -1,17 +1,17 @@
 #!/usr/bin/node
 const request = require('request');
-const movie_ID = process.argv[2];
+const movieID = process.argv[2];
 const options = {
-  url: 'https://swapi-api.alx-tools.com/api/films/' + movie_ID,
+  url: 'https://swapi-api.alx-tools.com/api/films/' + movieID,
   method: 'GET'
 };
 
-async function main() {
+async function main () {
   try {
     request(options, async function (error, response, body) {
       if (error) throw error;
-      const characters_URL = JSON.parse(body).characters;
-      for (const link of characters_URL) {
+      const charactersURL = JSON.parse(body).characters;
+      for (const link of charactersURL) {
         try {
           const character = await requestPromise(link);
           console.log(character.name);
@@ -25,7 +25,7 @@ async function main() {
   }
 }
 
-function requestPromise(url) {
+function requestPromise (url) {
   return new Promise((resolve, reject) => {
     request(url, { json: true }, (error, response, body) => {
       if (error) return reject(error);
