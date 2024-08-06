@@ -1,5 +1,11 @@
 #!/usr/bin/python3
-"""Last interview problem"""
+"""
+The last interview problem.
+
+A game where two players take turns by removing a prime number
+from the list of integer and all its multiples.
+The second player wins when the first can not do his move.
+"""
 
 
 def prime_numbers_upto(n):
@@ -9,9 +15,10 @@ def prime_numbers_upto(n):
     Args:
     - n: The upper limit for generating the prime numbers.
     """
-    # List prime numbers up till n as logic values of True and False
+    # List numbers up till n as logic values
     is_prime = [True] * (n + 1)
     is_prime[0] = is_prime[1] = False
+    # Changes number and its multiples to False
     for p in range(2, int(n ** .5) + 1):
         if is_prime[p]:
             for multiple in range(p * p, n + 1, p):
@@ -27,7 +34,7 @@ def prime_numbers_upto(n):
 
 def isWinner(x, nums):
     """
-    Returns the winner of the prime game played by Maria and Ben.
+    Returns the winner of the prime game turn_list by Maria and Ben.
     NO, you may not place your bets. It is not acceptable.
 
     Args:
@@ -39,11 +46,13 @@ def isWinner(x, nums):
         return None
     if x > len(nums):
         return None
+    if not nums:
+        return None
 
     wins_log = {"Ben": 0, "Maria": 0}
-    played = []
+    turn_list = []
 
-    # Start the round
+    # Stimulate the rounds
     for round_num in range(x):
         if nums[round_num] < 2:
             wins_log["Ben"] += 1
@@ -51,7 +60,7 @@ def isWinner(x, nums):
         pick_from = list(range(1, nums[round_num] + 1))
         prime_list = prime_numbers_upto(nums[round_num])
 
-        count = 0
+        turn_count = 0
         # Game turns simulation
         for number in prime_list:
             done = False
@@ -61,14 +70,15 @@ def isWinner(x, nums):
                     pick_from.remove(pick)
                     done = True
             if done:
-                count += 1
-            if count % 2 == 0:
-                played.append("Ben")
+                turn_count += 1
+            if turn_count % 2 == 0:
+                turn_list.append("Ben")
             else:
-                played.append("Maria")
-        wins_log[played[-1]] += 1
-        played.clear()
+                turn_list.append("Maria")
+        wins_log[turn_list[-1]] += 1
+        turn_list.clear()
 
+    # Determine winner by comparing win log
     if wins_log.get("Ben") == wins_log.get("Maria"):
         return None
     elif wins_log.get("Ben") > wins_log.get("Maria"):
