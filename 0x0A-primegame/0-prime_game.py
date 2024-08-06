@@ -66,7 +66,6 @@ def isWinner(x, nums):
                 played.append("Ben")
             else:
                 played.append("Maria")
-        print(played)
         wins_log[played[-1]] += 1
         played.clear()
 
