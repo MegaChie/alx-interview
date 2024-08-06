@@ -1,10 +1,6 @@
 #!/usr/bin/python3
 """
 The last interview problem.
-
-A game where two players take turns by removing a prime number
-from the list of integer and all its multiples.
-The second player wins when the first can not do his move.
 """
 
 
