@@ -38,9 +38,9 @@ def isWinner(x, nums):
     - nums: A list of integers with each nums[i] representing
             the ith round upper limit for the play set.
     """
-    if x == 0:
+    if x == 0 or not x:
         return None
-    if x > len(nums):
+    if x != len(nums):
         return None
     if not nums:
         return None
